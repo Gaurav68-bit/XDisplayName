@@ -4,16 +4,16 @@ function FullNameDisplay() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [fullName, setFullName] = useState("");
-    const [error, setError] = useState("");
+    const [error, setError] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (firstName.trim() && lastName.trim()) {
             setFullName(`Full Name: ${firstName} ${lastName}`);
-            setError("");
+            setError(false);
         } else {
             setFullName("");
-            setError("Please fill in both fields.");
+            setError(true);
         }
     };
 
@@ -33,8 +33,7 @@ function FullNameDisplay() {
                 <br />
                 <button type="submit">Submit</button>
             </form>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {fullName && <p>{fullName}</p>}
+            {!error && fullName && <p>{fullName}</p>}
         </div>
     );
 }
